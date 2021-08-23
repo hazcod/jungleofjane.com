@@ -1,0 +1,26 @@
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="author" content="jane">
+	<meta name="keywords" content="jungle,of,jane,plants,plant,planten,shop,web">
+	<meta name="description" content="{{ i18n "header_description" }}">
+	<meta name="robots" content="index, nofollow">
+	<meta name="Cache-Control" content="public">
+
+	<meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{if .IsPage}}{{ .Summary }}{{ else }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ end }}{{ end }}" />
+	<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+	<meta property="og:url" content="{{ .Permalink }}" />
+	<meta property="og:image" content="/img/icon.png" />
+
+	{{ with .OutputFormats.Get "rss" -}}
+	{{ printf `<link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+	{{ end -}}
+
+	<title>{{ i18n "header_title" }}</title>
+
+	<link rel="manifest" href="/manifest.json">
+	<meta name="theme-color" content="#3a9dc2"/>
+
+	<link rel="apple-touch-icon" href="/img/icon.png"/>
+	<link rel="icon" type="image/png" href="/img/icon.png"/>
+</head>
